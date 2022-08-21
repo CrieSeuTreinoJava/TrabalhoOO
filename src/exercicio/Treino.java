@@ -46,10 +46,11 @@ public class Treino {
 		}
 	}
 
-	public void editarExercicioPeso(String nome, int repeticao, int sets, int peso) {
+	public void editarExercicioPeso(String nome, String musculo, int repeticao, int sets, int peso) {
 		// editar exercicio escolhendo por nome do exercicio com peso
 		for (ExercicioPeso exercicio : this.exerciciosPeso) {
 			if (exercicio.getNome().equals(nome)) {
+				exercicio.setMusculo(musculo);
 				exercicio.setRepeticao(repeticao);
 				exercicio.setSets(sets);
 				exercicio.setPeso(peso);
@@ -57,10 +58,11 @@ public class Treino {
 		}
 	}
 
-	public void editarExercicioSemPeso(int repeticao, double tempo, double distancia) {
+	public void editarExercicioSemPeso(String nome, String musculo, int repeticao, double tempo, double distancia) {
 		// editar exercicio escolhendo por nome do exercicio sem peso
 		for (ExercicioSemPeso exercicio : this.exerciciosSemPeso) {
 			if (exercicio.getNome().equals(nome)) {
+				exercicio.setMusculo(musculo);
 				exercicio.setRepeticao(repeticao);
 				exercicio.setTempo(tempo);
 				exercicio.setDistancia(distancia);
@@ -98,4 +100,21 @@ public class Treino {
 	public ArrayList<ExercicioSemPeso> getExerciciosSemPeso() {
 		return exerciciosSemPeso;
 	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setExerciciosPeso(ArrayList<ExercicioPeso> exerciciosPeso) {
+		this.exerciciosPeso = exerciciosPeso;
+	}
+
+	public void setExerciciosSemPeso(ArrayList<ExercicioSemPeso> exerciciosSemPeso) {
+		this.exerciciosSemPeso = exerciciosSemPeso;
+	}
+
 }
