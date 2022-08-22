@@ -8,9 +8,13 @@ import exercicio.Treino;
 public class ControladorTreino {
 
   private Database database;
-
+  
+  public ControladorTreino() {
+	  this.database = Database.getInstance();  
+  }
+  
+  
   public void criarTreino(String nome) {
-    this.database = Database.getInstance();
     if (this.database.getTreino(nome) == null) {
       this.database.criarNovoTreino(nome);
     } else {
@@ -19,7 +23,6 @@ public class ControladorTreino {
   }
 
   public void apagarTreino(String nome) {
-    this.database = Database.getInstance();
     if (this.database.getTreino(nome) != null) {
       this.database.apagarTreino(nome);
     } else {
@@ -28,7 +31,6 @@ public class ControladorTreino {
   }
 
   public void editarTreino(String nome, String novoNome) {
-    this.database = Database.getInstance();
     if (this.database.getTreino(nome) != null) {
       this.database.editarTreino(nome, novoNome);
     } else {
