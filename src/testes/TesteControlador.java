@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import controlador.ControladorExercicio;
 import controlador.ControladorTreino;
 import exercicio.Treino;
+import view.TelaInicial;
 
 public class TesteControlador {
   public static void main(String[] args) {
+
     ControladorTreino controladorTreino = new ControladorTreino();
     ControladorExercicio controladorExercicio = new ControladorExercicio();
 
@@ -44,5 +46,6 @@ public class TesteControlador {
     for (String exercicio : exercicios) {
       System.out.println(exercicio);
     }
+    TelaInicial tela = new TelaInicial();
   }
 }

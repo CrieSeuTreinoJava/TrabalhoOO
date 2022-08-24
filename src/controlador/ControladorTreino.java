@@ -8,12 +8,11 @@ import exercicio.Treino;
 public class ControladorTreino {
 
   private Database database;
-  
+
   public ControladorTreino() {
-	  this.database = Database.getInstance();  
+    this.database = Database.getInstance();
   }
-  
-  
+
   public void criarTreino(String nome) {
     if (this.database.getTreino(nome) == null) {
       this.database.criarNovoTreino(nome);
@@ -38,7 +37,7 @@ public class ControladorTreino {
     }
   }
 
-  public ArrayList<Treino> listarTreinos() {
+  public String[] listarTreinos() {
     this.database = Database.getInstance();
     return this.database.getTreinos();
   }

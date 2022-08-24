@@ -36,7 +36,11 @@ public class Database {
     return null;
   }
 
-  public ArrayList<Treino> getTreinos() {
+  public String[] getTreinos() {
+    String[] treinos = new String[this.treinos.size()];
+    for (int i = 0; i < this.treinos.size(); i++) {
+      treinos[i] = this.treinos.get(i).getNome();
+    }
     return treinos;
   }
 
