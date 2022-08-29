@@ -4,14 +4,19 @@ import java.awt.event.*;
 import javax.swing.*;
 import controlador.*;
 import dados.*;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
-public class TelaInicial implements ActionListener {
+public class TelaInicial {
 
   private static JFrame tela;
   private static JButton btnCriarTreino;
+  private static JButton btnAcessarTreino;
   private static ImageIcon background;
   private static JTextField txtNomeTreino;
   private static JList listaTreinos;
+
+  private String treinoSelecionado;
 
   public TelaInicial() {
     tela = new JFrame("Tela Inicial");
@@ -28,32 +33,58 @@ public class TelaInicial implements ActionListener {
     btnCriarTreino = new JButton("Criar Treino");
     btnCriarTreino.setBounds(29, 300, 200, 50);
     btnCriarTreino.setVisible(true);
-    tela.add(this.btnCriarTreino);
-    btnCriarTreino.addActionListener(this);
+    tela.getContentPane().add(this.btnCriarTreino);
+    btnCriarTreino.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        ControladorTreino controladorTreino = new ControladorTreino();
+        controladorTreino.criarTreino(txtNomeTreino.getText());
+        listaTreinos.setListData(Database.getInstance().getTreinos());
+        listaTreinos.repaint();
+        tela.repaint();
+      }
+    });
 
     txtNomeTreino = new JTextField("nome do treino");
     txtNomeTreino.setBounds(29, 240, 200, 50);
     txtNomeTreino.setVisible(true);
-    tela.add(this.txtNomeTreino);
+    tela.getContentPane().add(this.txtNomeTreino);
     tela.repaint();
 
     // create a new JList with the content of the database
     listaTreinos = new JList();
+
+    // return the selected value
+    listaTreinos.addListSelectionListener(new ListSelectionListener() {
+      public void valueChanged(ListSelectionEvent e) {
+        if (!e.getValueIsAdjusting()) {
+          treinoSelecionado = listaTreinos.getSelectedValue().toString();
+        }
+      }
+    });
+    // listaTreinos.addListSelectionListener(new ListSelectionListener() {
+    // public void valueChanged(ListSelectionEvent e) {
+    // System.out.println(listaTreinos.getSelectedValue());
+
+    // }
+    // });
     listaTreinos.setListData(Database.getInstance().getTreinos());
     listaTreinos.setBounds(29, 400, 200, 200);
     listaTreinos.setVisible(true);
-    tela.add(this.listaTreinos);
+    tela.getContentPane().add(this.listaTreinos);
+
     listaTreinos.repaint();
     tela.repaint();
 
-  }
-
-  public void actionPerformed(ActionEvent arg0) {
-    ControladorTreino controladorTreino = new ControladorTreino();
-    controladorTreino.criarTreino(txtNomeTreino.getText());
-    listaTreinos.setListData(Database.getInstance().getTreinos());
-    listaTreinos.repaint();
-    tela.repaint();
+    btnAcessarTreino = new JButton("Acessar Treino");
+    btnAcessarTreino.setBounds(29, 610, 200, 50);
+    btnAcessarTreino.setVisible(true);
+    tela.getContentPane().add(this.btnAcessarTreino);
+    btnAcessarTreino.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        tela.setVisible(false);
+        new TelaTreino(treinoSelecionado);
+      }
+    });
 
   }
 
