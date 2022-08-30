@@ -1,7 +1,5 @@
 package controlador;
 
-import java.util.ArrayList;
-
 import dados.Database;
 import exercicio.Treino;
 
@@ -35,6 +33,10 @@ public class ControladorTreino {
     } else {
       System.out.println("O treino não existe!");
     }
+  }
+
+  public Treino getTreino(String nome) {
+    return this.database.getTreino(nome);
   }
 
   public String[] listarTreinos() {

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import exercicio.Treino;
 
-
-
 public class Database {
 
   ArrayList<Treino> treinos;

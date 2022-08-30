@@ -13,8 +13,8 @@ public class TelaInicial {
   private static JButton btnCriarTreino;
   private static JButton btnAcessarTreino;
   private static ImageIcon background;
-  private static JTextField txtNomeTreino;
-  private static JList listaTreinos;
+  private static JTextField nomeTreinoInput;
+  private static JList<String> listaTreinos;
 
   private String treinoSelecionado;
 
@@ -31,27 +31,27 @@ public class TelaInicial {
     tela.setVisible(true);
 
     btnCriarTreino = new JButton("Criar Treino");
-    btnCriarTreino.setBounds(29, 300, 200, 50);
+    btnCriarTreino.setBounds(41, 106, 200, 30);
     btnCriarTreino.setVisible(true);
-    tela.getContentPane().add(this.btnCriarTreino);
+    tela.getContentPane().add(btnCriarTreino);
     btnCriarTreino.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         ControladorTreino controladorTreino = new ControladorTreino();
-        controladorTreino.criarTreino(txtNomeTreino.getText());
+        controladorTreino.criarTreino(nomeTreinoInput.getText());
         listaTreinos.setListData(Database.getInstance().getTreinos());
         listaTreinos.repaint();
         tela.repaint();
       }
     });
 
-    txtNomeTreino = new JTextField("nome do treino");
-    txtNomeTreino.setBounds(29, 240, 200, 50);
-    txtNomeTreino.setVisible(true);
-    tela.getContentPane().add(this.txtNomeTreino);
+    nomeTreinoInput = new JTextField("");
+    nomeTreinoInput.setBounds(41, 51, 200, 30);
+    nomeTreinoInput.setVisible(true);
+    tela.getContentPane().add(nomeTreinoInput);
     tela.repaint();
 
     // create a new JList with the content of the database
-    listaTreinos = new JList();
+    listaTreinos = new JList<String>();
 
     // return the selected value
     listaTreinos.addListSelectionListener(new ListSelectionListener() {
@@ -68,17 +68,17 @@ public class TelaInicial {
     // }
     // });
     listaTreinos.setListData(Database.getInstance().getTreinos());
-    listaTreinos.setBounds(29, 400, 200, 200);
+    listaTreinos.setBounds(41, 170, 200, 399);
     listaTreinos.setVisible(true);
-    tela.getContentPane().add(this.listaTreinos);
+    tela.getContentPane().add(listaTreinos);
 
     listaTreinos.repaint();
     tela.repaint();
 
     btnAcessarTreino = new JButton("Acessar Treino");
-    btnAcessarTreino.setBounds(29, 610, 200, 50);
+    btnAcessarTreino.setBounds(41, 618, 200, 30);
     btnAcessarTreino.setVisible(true);
-    tela.getContentPane().add(this.btnAcessarTreino);
+    tela.getContentPane().add(btnAcessarTreino);
     btnAcessarTreino.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         tela.setVisible(false);
