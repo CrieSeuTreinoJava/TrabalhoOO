@@ -35,12 +35,18 @@ public class TelaTreino {
 	private static JScrollPane scroll2;
 
 	private static JTable tabela;
+	private static JTable tabela2;
 
 	private JLabel texto2;
 	private JLabel textoExercicio;
 
 	public TelaTreino(String treino) {
 		ControladorExercicio controladorExercicio = new ControladorExercicio();
+
+		String[] colunas = { "Exercício", "Músculo", "Repetição", "Set",
+				"Peso" };
+		String[] colunas2 = { "Exercício", "Músculo", "Repetição", "Tempo",
+				"Distância" };
 
 		tela = new JFrame("Tela Inicial");
 		tela.setBounds(0, 0, 1280, 720);
@@ -59,13 +65,36 @@ public class TelaTreino {
 							Integer.parseInt(caixaTextoRep.getText()),
 							Integer.parseInt(caixaTextoSetTempo.getText()),
 							Integer.parseInt(caixaTextoPesoDist.getText()));
+					String[][] dadosPeso = new String[controladorExercicio.getExerciciosPeso(treino).size()][5];
+					for (int i = 0; i < controladorExercicio.getExerciciosPeso(treino).size(); i++) {
+						dadosPeso[i][0] = controladorExercicio.getExerciciosPeso(treino).get(i).getNome();
+						dadosPeso[i][1] = controladorExercicio.getExerciciosPeso(treino).get(i).getMusculo();
+						dadosPeso[i][2] = Integer.toString(controladorExercicio.getExerciciosPeso(treino).get(i).getRepeticao());
+						dadosPeso[i][3] = Integer.toString(controladorExercicio.getExerciciosPeso(treino).get(i).getSets());
+						dadosPeso[i][4] = Integer.toString(controladorExercicio.getExerciciosPeso(treino).get(i).getPeso());
+					}
+					tabela = new JTable(dadosPeso, colunas);
+					scroll.setViewportView(tabela);
+
 				} else {
-					System.out.println("Exercicio sem peso");
+					// System.out.println("Exercicio sem peso");
 					controladorExercicio.criarExercicioSemPeso(treino,
 							caixaTextoExercicio.getText(), caixaTextoMusculo.getText(),
 							Integer.parseInt(caixaTextoRep.getText()),
 							Integer.parseInt(caixaTextoSetTempo.getText()),
 							Integer.parseInt(caixaTextoPesoDist.getText()));
+
+					String[][] dadosSemPeso = new String[controladorExercicio.getExerciciosSemPeso(treino).size()][5];
+					for (int i = 0; i < controladorExercicio.getExerciciosSemPeso(treino).size(); i++) {
+						dadosSemPeso[i][0] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getNome();
+						dadosSemPeso[i][1] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getMusculo();
+						dadosSemPeso[i][2] = Integer
+								.toString(controladorExercicio.getExerciciosSemPeso(treino).get(i).getRepeticao());
+						dadosSemPeso[i][3] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getTempo() + "";
+						dadosSemPeso[i][4] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getDistancia() + "";
+					}
+					tabela2 = new JTable(dadosSemPeso, colunas2);
+					scroll2.setViewportView(tabela2);
 				}
 			}
 		});
@@ -137,13 +166,34 @@ public class TelaTreino {
 		scroll.setBounds(500, 40, 300, 430);
 		tela.getContentPane().add(scroll);
 
-		// String [] colunas = { "Exercício", "Músculo", "Repetição", "Set/Tempo",
-		// "Peso/Distância" };
-		// Object [][] exercicios = new
-		// String[controladorExercicio.getExercicios().size()][5];
+		scroll2 = new JScrollPane();
+		scroll2.setBounds(800, 40, 300, 430);
+		tela.getContentPane().add(scroll2);
 
-		tabela = new JTable();
+		String[][] dadosPeso = new String[controladorExercicio.getExerciciosPeso(treino).size()][5];
+		String[][] dadosSemPeso = new String[controladorExercicio.getExerciciosSemPeso(treino).size()][5];
+
+		for (int i = 0; i < controladorExercicio.getExerciciosPeso(treino).size(); i++) {
+			dadosPeso[i][0] = controladorExercicio.getExerciciosPeso(treino).get(i).getNome();
+			dadosPeso[i][1] = controladorExercicio.getExerciciosPeso(treino).get(i).getMusculo();
+			dadosPeso[i][2] = Integer.toString(controladorExercicio.getExerciciosPeso(treino).get(i).getRepeticao());
+			dadosPeso[i][3] = Integer.toString(controladorExercicio.getExerciciosPeso(treino).get(i).getSets());
+			dadosPeso[i][4] = Integer.toString(controladorExercicio.getExerciciosPeso(treino).get(i).getPeso());
+		}
+
+		for (int i = 0; i < controladorExercicio.getExerciciosSemPeso(treino).size(); i++) {
+			dadosSemPeso[i][0] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getNome();
+			dadosSemPeso[i][1] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getMusculo();
+			dadosSemPeso[i][2] = Integer.toString(controladorExercicio.getExerciciosSemPeso(treino).get(i).getRepeticao());
+			dadosSemPeso[i][3] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getTempo() + "";
+			dadosSemPeso[i][4] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getDistancia() + "";
+		}
+
+		tabela = new JTable(dadosPeso, colunas);
 		scroll.setViewportView(tabela);
+
+		tabela2 = new JTable(dadosSemPeso, colunas2);
+		scroll2.setViewportView(tabela2);
 
 		nomeDoTreino = new JLabel(treino);
 		nomeDoTreino.setBounds(290, 69, 200, 30);
@@ -166,10 +216,6 @@ public class TelaTreino {
 		textoExercicio = new JLabel("Nome do Exercício");
 		textoExercicio.setBounds(50, 100, 200, 30);
 		tela.getContentPane().add(textoExercicio);
-
-		scroll2 = new JScrollPane();
-		scroll2.setBounds(800, 40, 300, 430);
-		tela.getContentPane().add(scroll2);
 
 		tela.setLocationRelativeTo(null);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -9,10 +9,9 @@ import exercicio.Treino;
 
 public class ControladorExercicio {
   private Database database;
-  
-  
+
   public ControladorExercicio() {
-	  this.database = Database.getInstance();
+    this.database = Database.getInstance();
   }
 
   public void criarExercicioPeso(String treino, String nome, String musculo, int repeticao, int sets, int peso) {
@@ -60,4 +59,15 @@ public class ControladorExercicio {
     }
     return exercicios;
   }
+
+  public ArrayList<ExercicioPeso> getExerciciosPeso(String treino) {
+    Treino treinoSelecionado = this.database.getTreino(treino);
+    return treinoSelecionado.getExerciciosPeso();
+  }
+
+  public ArrayList<ExercicioSemPeso> getExerciciosSemPeso(String treino) {
+    Treino treinoSelecionado = this.database.getTreino(treino);
+    return treinoSelecionado.getExerciciosSemPeso();
+  }
+
 }
