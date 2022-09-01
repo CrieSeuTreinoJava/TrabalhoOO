@@ -121,7 +121,7 @@ public class TelaTreino {
 		caixaTextoExercicio.setColumns(10);
 
 		texto1 = new JLabel("Crie seu exercício:");
-		texto1.setBounds(50, 40, 200, 30);
+		texto1.setBounds(50, 69, 200, 30);
 		tela.getContentPane().add(texto1);
 
 		textoMusculo = new JLabel("Músculo");
@@ -159,15 +159,15 @@ public class TelaTreino {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		excluir.setBounds(900, 490, 200, 30);
+		excluir.setBounds(770, 550, 200, 30);
 		tela.getContentPane().add(excluir);
 
 		scroll = new JScrollPane();
-		scroll.setBounds(500, 40, 300, 430);
+		scroll.setBounds(290, 130, 340, 400);
 		tela.getContentPane().add(scroll);
 
 		scroll2 = new JScrollPane();
-		scroll2.setBounds(800, 40, 300, 430);
+		scroll2.setBounds(630, 130, 340, 400);
 		tela.getContentPane().add(scroll2);
 
 		String[][] dadosPeso = new String[controladorExercicio.getExerciciosPeso(treino).size()][5];
@@ -196,7 +196,7 @@ public class TelaTreino {
 		scroll2.setViewportView(tabela2);
 
 		nomeDoTreino = new JLabel(treino);
-		nomeDoTreino.setBounds(290, 69, 200, 30);
+		nomeDoTreino.setBounds(590, 56, 120, 21);
 		tela.getContentPane().add(nomeDoTreino);
 
 		voltar = new JButton("Voltar");
@@ -206,11 +206,11 @@ public class TelaTreino {
 				new TelaInicial();
 			}
 		});
-		voltar.setBounds(1130, 40, 100, 30);
+		voltar.setBounds(1050, 20, 100, 30);
 		tela.getContentPane().add(voltar);
 
-		texto2 = new JLabel("Você está aceesando o Treino:");
-		texto2.setBounds(290, 40, 200, 30);
+		texto2 = new JLabel("Você está acessando o Treino:");
+		texto2.setBounds(530, 20, 230, 30);
 		tela.getContentPane().add(texto2);
 
 		textoExercicio = new JLabel("Nome do Exercício");
