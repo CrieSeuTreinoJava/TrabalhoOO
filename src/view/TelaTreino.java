@@ -157,6 +157,35 @@ public class TelaTreino {
 		excluir = new JButton("Excluir");
 		excluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (tabela.getSelectedRow() != -1) {
+					controladorExercicio.apagarExercicioPeso(treino,
+							tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
+					System.out.println(tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
+					String[][] dadosPeso = new String[controladorExercicio.getExerciciosPeso(treino).size()][5];
+					for (int i = 0; i < controladorExercicio.getExerciciosPeso(treino).size(); i++) {
+						dadosPeso[i][0] = controladorExercicio.getExerciciosPeso(treino).get(i).getNome();
+						dadosPeso[i][1] = controladorExercicio.getExerciciosPeso(treino).get(i).getMusculo();
+						dadosPeso[i][2] = Integer.toString(controladorExercicio.getExerciciosPeso(treino).get(i).getRepeticao());
+						dadosPeso[i][3] = Integer.toString(controladorExercicio.getExerciciosPeso(treino).get(i).getSets());
+						dadosPeso[i][4] = Integer.toString(controladorExercicio.getExerciciosPeso(treino).get(i).getPeso());
+					}
+					tabela = new JTable(dadosPeso, colunas);
+					scroll.setViewportView(tabela);
+				} else if (tabela2.getSelectedRow() != -1) {
+					controladorExercicio.apagarExercicioSemPeso(treino,
+							tabela2.getValueAt(tabela2.getSelectedRow(), 0).toString());
+					String[][] dadosSemPeso = new String[controladorExercicio.getExerciciosSemPeso(treino).size()][5];
+					for (int i = 0; i < controladorExercicio.getExerciciosSemPeso(treino).size(); i++) {
+						dadosSemPeso[i][0] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getNome();
+						dadosSemPeso[i][1] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getMusculo();
+						dadosSemPeso[i][2] = Integer
+								.toString(controladorExercicio.getExerciciosSemPeso(treino).get(i).getRepeticao());
+						dadosSemPeso[i][3] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getTempo() + "";
+						dadosSemPeso[i][4] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getDistancia() + "";
+					}
+					tabela2 = new JTable(dadosSemPeso, colunas2);
+					scroll2.setViewportView(tabela2);
+				}
 			}
 		});
 		excluir.setBounds(770, 550, 200, 30);

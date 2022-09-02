@@ -25,10 +25,14 @@ public class TesteControlador {
     // -----------------------------------------------------------------------------------------------------------------------------
 
     // Criar exercicios
-    controladorExercicio.criarExercicioPeso("Bracinho", "Biceps unilateral", "Bíceps", 10, 3, 50);
+    controladorExercicio.criarExercicioPeso("Bracinho", "Bicepawds unilateral", "Bíceps", 10, 3, 50);
+    controladorExercicio.criarExercicioPeso("Bracinho", "Bicwadeps unilateral", "Bíceps", 10, 3, 50);
+    controladorExercicio.criarExercicioPeso("Bracinho", "Biceawsadps unilateral", "Bíceps", 10, 3, 50);
+    controladorExercicio.criarExercicioPeso("Bracinho", "Biceweps unilateral", "Bíceps", 10, 3, 50);
+    controladorExercicio.criarExercicioPeso("Bracinho", "Biceaawddps unilateral", "Bíceps", 10, 3, 50);
     controladorExercicio.criarExercicioPeso("Costas", "Remada sincera", "Posterior do ombro", 12, 4, 20);
     // Editar exercicio
-    controladorExercicio.editarExercicioPeso("Bracinho", "Biceps unilateral", "Bíceps", 10, 3, 50);
+
     // Apagar exercicio
     // controladorExercicio.apagarExercicioPeso("Costas", "Remada sincera");
 
