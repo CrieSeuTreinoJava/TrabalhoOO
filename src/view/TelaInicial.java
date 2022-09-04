@@ -68,7 +68,7 @@ public class TelaInicial {
     // }
     // });
     listaTreinos.setListData(Database.getInstance().getTreinos());
-    listaTreinos.setBounds(41, 170, 200, 399);
+    listaTreinos.setBounds(41, 170, 200, 300);
     listaTreinos.setVisible(true);
     tela.getContentPane().add(listaTreinos);
 
@@ -77,15 +77,44 @@ public class TelaInicial {
 
     btnAcessarTreino = new JButton("Acessar Treino");
     btnAcessarTreino.setBounds(41, 618, 200, 30);
-    btnAcessarTreino.setVisible(true);
-    tela.getContentPane().add(btnAcessarTreino);
     btnAcessarTreino.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         tela.setVisible(false);
         new TelaTreino(treinoSelecionado);
       }
     });
+    btnAcessarTreino.setVisible(true);
+    tela.getContentPane().add(btnAcessarTreino);
+
+    JButton btnEditarTreino = new JButton("Editar");
+    btnEditarTreino.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+
+        ControladorTreino controladorTreino = new ControladorTreino();
+        controladorTreino.editarTreino(listaTreinos.getSelectedValue(), nomeTreinoInput.getText());
+        listaTreinos.setListData(Database.getInstance().getTreinos());
+        listaTreinos.repaint();
+        tela.repaint();
+
+      }
+    });
+    btnEditarTreino.setBounds(40, 579, 201, 30);
+    tela.getContentPane().add(btnEditarTreino);
+
+    JButton btnNewButton = new JButton("Apagar");
+    btnNewButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        ControladorTreino controladorTreino = new ControladorTreino();
+        controladorTreino.apagarTreino(listaTreinos.getSelectedValue());
+        listaTreinos.setListData(Database.getInstance().getTreinos());
+        listaTreinos.repaint();
+        tela.repaint();
+      }
+    });
+    btnNewButton.setBounds(41, 548, 200, 21);
+    tela.getContentPane().add(btnNewButton);
+
+    tela.repaint();
 
   }
-
 }
