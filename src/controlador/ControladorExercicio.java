@@ -27,9 +27,10 @@ public class ControladorExercicio {
    * Determina o treino a partir do nome passado como parâmetro.
    * cria um novo exercício com peso e adiciona no treino.
    */
-  public void criarExercicioPeso(String treino, String nome, String musculo, int repeticao, int sets, int peso) {
+  public ArrayList<ExercicioPeso> criarExercicioPeso(String treino, String nome, String musculo, int repeticao, int sets, int peso) {
     Treino treinoSelecionado = this.database.getTreino(treino);
     treinoSelecionado.criarNovoExercicioPeso(nome, musculo, repeticao, sets, peso);
+    return treinoSelecionado.getExerciciosPeso();
   }
 
   /**

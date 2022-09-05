@@ -11,13 +11,12 @@ class TesteControladorTreino {
 
 	ControladorTreino controladorTreino = new ControladorTreino();
 	
-//	@Test
-//	void testCriarTreino() {
-//		controladorTreino.criarTreino("Bracinho");
-//		controladorTreino.criarTreino("Perna");
-//		controladorTreino.criarTreino("Peito");
-//		fail("nao implementado");
-//	}
+	@Test
+	void testCriarTreino() {
+		controladorTreino.criarTreino("Bracinho");
+		controladorTreino.criarTreino("Perna");
+		controladorTreino.criarTreino("Peito");
+	}
 
 	@Test
 	void testEditarTreino() {
