@@ -7,6 +7,11 @@ import dados.*;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 
+/**
+ * Classe que representa a tela inicial do programa, onde ficará a lista dos
+ * treinos, além dos butões para adicionar, remover e editar treinos.
+ * 
+ */
 public class TelaInicial {
 
   private static JFrame tela;
@@ -18,6 +23,10 @@ public class TelaInicial {
 
   private String treinoSelecionado;
 
+  /**
+   * Construtor da classe TelaInicial. Inicializa todos os componentes da tela
+   * telaInicial.
+   */
   public TelaInicial() {
     tela = new JFrame("Tela Inicial");
     tela.setBounds(0, 0, 1280, 720);

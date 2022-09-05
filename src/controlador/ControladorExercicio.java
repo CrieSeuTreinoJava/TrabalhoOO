@@ -9,7 +9,7 @@ import exercicio.Treino;
 
 /**
  * 
- * Faz a relação entre a interface e a classe Database.
+ * Faz a relação entre a interface e as classes de exercicios.
  * Para realizar as operações de CRUD de exercício.
  */
 public class ControladorExercicio {
@@ -51,9 +51,8 @@ public class ControladorExercicio {
     treinoSelecionado.editarExercicioPeso(nome, musculo, repeticao, sets, peso);
   }
 
-
-/**
- *   /**
+  /**
+   * /**
    * Determina o treino a partir do nome passado como parâmetro.
    * recebe os atributos modificados do exercício sem peso e atuliza o exercício.
    */
@@ -62,24 +61,30 @@ public class ControladorExercicio {
     Treino treinoSelecionado = this.database.getTreino(treino);
     treinoSelecionado.editarExercicioSemPeso(nome, musculo, repeticao, tempo, distancia);
   }
-/**
- * Determina o treino e o exercicio a partir dos atributos e paga o exercicio com peso.
- */
+
+  /**
+   * Determina o treino e o exercicio a partir dos atributos e paga o exercicio
+   * com peso.
+   */
   public void apagarExercicioPeso(String treino, String nome) {
     Treino treinoSelecionado = this.database.getTreino(treino);
     treinoSelecionado.apagarExercicioPeso(nome);
   }
-/**
- * Determina o treino e o exercicio a partir dos atributos e paga o exercicio sem peso.
- */
+
+  /**
+   * Determina o treino e o exercicio a partir dos atributos e paga o exercicio
+   * sem peso.
+   */
   public void apagarExercicioSemPeso(String treino, String nome) {
     Treino treinoSelecionado = this.database.getTreino(treino);
     treinoSelecionado.apagarExercicioSemPeso(nome);
   }
-/**
- * recebe como atributo o nome treino e retorna a lista de exercicios
- * @deprecated
- */
+
+  /**
+   * recebe como atributo o nome treino e retorna a lista de exercicios
+   * 
+   * @deprecated
+   */
   public ArrayList<String> listarExercicios(String treino) {
     Treino treinoSelecionado = this.database.getTreino(treino);
 
@@ -101,9 +106,10 @@ public class ControladorExercicio {
     Treino treinoSelecionado = this.database.getTreino(treino);
     return treinoSelecionado.getExerciciosPeso();
   }
-/**
- * recebe como atributo o nome treino e retorna a lista de exercicios sem peso
- */
+
+  /**
+   * recebe como atributo o nome treino e retorna a lista de exercicios sem peso
+   */
   public ArrayList<ExercicioSemPeso> getExerciciosSemPeso(String treino) {
     Treino treinoSelecionado = this.database.getTreino(treino);
     return treinoSelecionado.getExerciciosSemPeso();

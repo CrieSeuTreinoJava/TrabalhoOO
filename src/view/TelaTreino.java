@@ -7,6 +7,12 @@ import controlador.ControladorExercicio;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Classe que representa a tela de treino, onde ficará a lista dos exercícios
+ * com peso e sem peso
+ * além dos botões para adicionar, editar e remover exercícios
+ * 
+ */
 public class TelaTreino {
 	private static JFrame tela;
 
@@ -40,6 +46,10 @@ public class TelaTreino {
 	private JLabel texto2;
 	private JLabel textoExercicio;
 
+	/**
+	 * Construtor da classe TelaTreino. Inicializa todos os componentes da tela
+	 * TelaTreino.
+	 */
 	public TelaTreino(String treino) {
 		ControladorExercicio controladorExercicio = new ControladorExercicio();
 
