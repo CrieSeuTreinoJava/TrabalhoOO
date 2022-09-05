@@ -42,8 +42,10 @@ public class ExercicioPeso extends Exercicio {
 	}
 
 	/**
+	 * Método imprimir imprime os atributos de um exercicio.
+	 * 
 	 * @deprecated
-	 *             Método imprimir imprime os atributos de um exercicio.
+	 *             Esse método não é mais utilizado.
 	 */
 	public void imprimir() {
 		System.out.println("Nome: " + getNome());

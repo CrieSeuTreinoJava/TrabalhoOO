@@ -19,8 +19,6 @@ public class Treino {
 	/**
 	 * Instância um objeto Treino com o nome passado como parâmetro.
 	 * Além disso, inicializa as listas de exerciciosPeso e exerciciosSemPeso.
-	 * 
-	 * @param nome
 	 */
 	public Treino(String nome) {
 		this.nome = nome;
