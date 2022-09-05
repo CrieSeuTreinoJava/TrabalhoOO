@@ -2,6 +2,13 @@ package exercicio;
 
 import java.util.ArrayList;
 
+/**
+ * Treino é uma classe que representa um treino de um usuário, armazenando os
+ * exercícios.
+ * Esta classe possui os atributos nome,
+ * exerciciosPeso(uma lista de exercicio com peso) e
+ * exerciciosSemPeso(uma lista de exercicio sem peso).
+ */
 public class Treino {
 
 	private String nome;
@@ -9,12 +16,26 @@ public class Treino {
 	private ArrayList<ExercicioPeso> exerciciosPeso;
 	private ArrayList<ExercicioSemPeso> exerciciosSemPeso;
 
+	/**
+	 * Instância um objeto Treino com o nome passado como parâmetro.
+	 * Além disso, inicializa as listas de exerciciosPeso e exerciciosSemPeso.
+	 * 
+	 * @param nome
+	 */
 	public Treino(String nome) {
 		this.nome = nome;
 		this.exerciciosPeso = new ArrayList<ExercicioPeso>();
 		this.exerciciosSemPeso = new ArrayList<ExercicioSemPeso>();
 	}
 
+	/**
+	 * Este método válida se um exercicio com peso já existe no treino baseado no
+	 * parametro
+	 * nome.
+	 * Caso não exista, adiciona o exercicio à lista exerciciosPeso.
+	 * 
+	 * @throws Exceção caso o exercicio já exista no treino.
+	 */
 	public void criarNovoExercicioPeso(String nome, String musculo, int repeticao, int sets, int peso) {
 		// validar se o exercicio ja existe
 		boolean foiCriado = false;
@@ -31,6 +52,14 @@ public class Treino {
 		}
 	}
 
+	/**
+	 * Este método válida se um exercicio sem peso já existe no treino baseado no
+	 * parametro
+	 * nome.
+	 * Caso não exista, adiciona o exercicio à lista exerciciosSemPeso.
+	 * 
+	 * @throws Exceção caso o exercicio já exista no treino.
+	 */
 	public void criarNovoExercicioSemPeso(String nome, String musculo, int repeticao, double tempo, double distancia) {
 		boolean foiCriado = false;
 		for (Exercicio exercicio : exerciciosSemPeso) {
@@ -46,6 +75,11 @@ public class Treino {
 		}
 	}
 
+	/**
+	 * Esse método serve para editar os atributos de um exercicio com peso.
+	 * ele determina o exercicio a ser editado baseado no nome passado como
+	 * parâmetro.
+	 */
 	public void editarExercicioPeso(String nome, String musculo, int repeticao, int sets, int peso) {
 		// editar exercicio escolhendo por nome do exercicio com peso
 		for (ExercicioPeso exercicio : this.exerciciosPeso) {
@@ -58,6 +92,11 @@ public class Treino {
 		}
 	}
 
+	/**
+	 * Esse método serve para editar os atributos de um exercicio sem peso.
+	 * ele determina o exercicio a ser editado baseado no nome passado como
+	 * parâmetro.
+	 */
 	public void editarExercicioSemPeso(String nome, String musculo, int repeticao, double tempo, double distancia) {
 		// editar exercicio escolhendo por nome do exercicio sem peso
 		for (ExercicioSemPeso exercicio : this.exerciciosSemPeso) {
@@ -70,6 +109,14 @@ public class Treino {
 		}
 	}
 
+	/**
+	 * Esse método serve para remover um exercicio com peso.
+	 * ele determina o exercicio a ser removido baseado no nome passado como
+	 * parâmetro.
+	 * 
+	 * @return true caso o exercicio seja removido com sucesso.
+	 * @return false caso o exercicio não seja removido.
+	 */
 	public boolean apagarExercicioPeso(String nome) {
 		// apagar exercicio escolhendo por nome do exercicio
 		for (Exercicio exercicio : this.exerciciosPeso) {
@@ -81,6 +128,14 @@ public class Treino {
 		return false;
 	}
 
+	/**
+	 * Esse método serve para remover um exercicio sem peso.
+	 * ele determina o exercicio a ser removido baseado no nome passado como
+	 * parâmetro.
+	 * 
+	 * @return true caso o exercicio seja removido com sucesso.
+	 * @return false caso o exercicio não seja removido.
+	 */
 	public boolean apagarExercicioSemPeso(String nome) {
 		// apagar exercicio escolhendo por nome do exercicio
 		for (Exercicio exercicio : this.exerciciosSemPeso) {
@@ -92,7 +147,6 @@ public class Treino {
 		return false;
 	}
 
-	// return exercicios;
 	public ArrayList<ExercicioPeso> getExerciciosPeso() {
 		return exerciciosPeso;
 	}
