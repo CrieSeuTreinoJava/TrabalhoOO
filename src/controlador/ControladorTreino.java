@@ -14,7 +14,6 @@ public class ControladorTreino {
 
   /**
    * Construtor da classe ControladorExercicio.
-   * Recebe a instância da classe Database.
    */
   public ControladorTreino() {
     this.database = Database.getInstance();
@@ -48,11 +47,19 @@ public class ControladorTreino {
    * Determina o treino a partir do nome passado como parâmetro.
    * Se o treino existir, recebe o novo nome e atualiza o treino.
    */
-  public void editarTreino(String nome, String novoNome) {
+  public Treino editarTreino(String nome, String novoNome) {
     if (this.database.getTreino(nome) != null) {
-      this.database.editarTreino(nome, novoNome);
+      if (this.database.getTreino(novoNome) == null) {
+        this.database.editarTreino(nome, novoNome);
+        return this.database.getTreino(novoNome);
+      } else {
+        System.out.println("O nome do treino já está cadastrado, utilize outro nome!");
+        return null;
+      }
+
     } else {
       System.out.println("O treino não existe!");
+      return null;
     }
   }
 
