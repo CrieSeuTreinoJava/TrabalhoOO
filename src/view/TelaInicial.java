@@ -31,16 +31,17 @@ public class TelaInicial {
     tela = new JFrame("Tela Inicial");
     tela.setBounds(0, 0, 1280, 720);
     tela.setResizable(false);
-    background = new ImageIcon("src/img/muzy.jpg");
-    tela.setContentPane(new JLabel(background));
+	ImageIcon background = new ImageIcon("src/img/muzy.jpg");
+	tela.setContentPane(new JLabel(background));
+
 
     tela.getContentPane().setLayout(null);
     tela.setLocationRelativeTo(null);
     tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     tela.setVisible(true);
 
-    btnCriarTreino = new JButton("Criar Treino");
-    btnCriarTreino.setBounds(41, 106, 200, 30);
+    btnCriarTreino = new JButton("Criar treino");
+    btnCriarTreino.setBounds(40, 90, 200, 30);
     btnCriarTreino.setVisible(true);
     tela.getContentPane().add(btnCriarTreino);
     btnCriarTreino.addActionListener(new ActionListener() {
@@ -54,7 +55,7 @@ public class TelaInicial {
     });
 
     nomeTreinoInput = new JTextField("");
-    nomeTreinoInput.setBounds(41, 51, 200, 30);
+    nomeTreinoInput.setBounds(40, 40, 200, 30);
     nomeTreinoInput.setVisible(true);
     tela.getContentPane().add(nomeTreinoInput);
     tela.repaint();
@@ -77,15 +78,15 @@ public class TelaInicial {
     // }
     // });
     listaTreinos.setListData(Database.getInstance().getTreinos());
-    listaTreinos.setBounds(41, 170, 200, 300);
+    listaTreinos.setBounds(40, 170, 200, 300);
     listaTreinos.setVisible(true);
     tela.getContentPane().add(listaTreinos);
 
     listaTreinos.repaint();
     tela.repaint();
 
-    btnAcessarTreino = new JButton("Acessar Treino");
-    btnAcessarTreino.setBounds(41, 618, 200, 30);
+    btnAcessarTreino = new JButton("Acessar treino");
+    btnAcessarTreino.setBounds(41, 590, 200, 30);
     btnAcessarTreino.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         tela.setVisible(false);
@@ -107,7 +108,7 @@ public class TelaInicial {
 
       }
     });
-    btnEditarTreino.setBounds(40, 579, 201, 30);
+    btnEditarTreino.setBounds(41, 540, 200, 30);
     tela.getContentPane().add(btnEditarTreino);
 
     JButton btnNewButton = new JButton("Apagar");
@@ -120,8 +121,12 @@ public class TelaInicial {
         tela.repaint();
       }
     });
-    btnNewButton.setBounds(41, 548, 200, 21);
+    btnNewButton.setBounds(41, 490, 200, 30);
     tela.getContentPane().add(btnNewButton);
+    
+    JLabel lblSelecioneUmTreino = new JLabel("Selecione um treino");
+    lblSelecioneUmTreino.setBounds(40, 132, 200, 32);
+    tela.getContentPane().add(lblSelecioneUmTreino);
 
     tela.repaint();
 
