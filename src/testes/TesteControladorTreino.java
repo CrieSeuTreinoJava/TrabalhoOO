@@ -2,6 +2,7 @@ package testes;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import controlador.ControladorTreino;
@@ -29,11 +30,13 @@ class TesteControladorTreino {
 		
 		Treino treinoNaoExiste = controladorTreino.editarTreino("triceps", "biceps");
 		assertNull(treinoNaoExiste);
+	
 	}
 
-//	@Test
-//	void testListarTreinos() {
-//		fail("nao implementado");
-//	}
-
+	/*
+	 * @Test String[] testListarTreinos() { return
+	 * controladorTreino.listarTreinos(); }
+	 * 
+	 * @Test void testApagarTreino() { controladorTreino.apagarTreino("Peito"); }
+	 */
 }

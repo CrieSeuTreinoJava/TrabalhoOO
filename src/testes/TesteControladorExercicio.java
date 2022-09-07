@@ -9,11 +9,14 @@ import org.junit.jupiter.api.Test;
 import controlador.ControladorExercicio;
 import controlador.ControladorTreino;
 import exercicio.ExercicioPeso;
+import exercicio.ExercicioSemPeso;
 
 class TesteControladorExercicio {
 
-	ControladorTreino controladorTreino = new ControladorTreino();
-	ControladorExercicio controladorExercicioPeso = new ControladorExercicio();
+		ControladorExercicio controladorExercicioPeso = new ControladorExercicio();
+		ControladorExercicio controladorExercicioSemPeso = new ControladorExercicio();
+		ControladorTreino controladorTreino = new ControladorTreino();
+
 	
 	
 	@Test
@@ -26,17 +29,16 @@ class TesteControladorExercicio {
 
 	@Test
 	void testCriarExercicioSemPeso() {
-		fail("Not yet implemented");
+		controladorTreino.criarTreino("Quarta");
+		ArrayList<ExercicioSemPeso> exercicios = controladorExercicioSemPeso.criarExercicioSemPeso("Quarta", "Corrida", "Coracao", 1, 30, 5);
+		System.out.println(exercicios.get(0).getNome());
+		assertEquals("Corrida", exercicios.get(0).getNome());
 	}
 
-	@Test
-	void testEditarExercicioPeso() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testEditarExercicioSemPeso() {
-		fail("Not yet implemented");
-	}
+	/*
+	 * @Test void testEditarExercicioPeso() { fail("Not yet implemented"); }
+	 * 
+	 * @Test void testEditarExercicioSemPeso() { fail("Not yet implemented"); }
+	 */
 
 }
