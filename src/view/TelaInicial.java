@@ -43,6 +43,7 @@ public class TelaInicial {
 	    // Apagar treino
 	    controladorTreino.apagarTreino("Perna");
 	    // Criar exercicios
+
 	    controladorExercicio.criarExercicioPeso("Bracinho", "Bicepawds unilateral", "Bíceps", 10, 3, 50);
 	    controladorExercicio.criarExercicioPeso("Bracinho", "Bicwadeps unilateral", "Bíceps", 10, 3, 50);
 	    controladorExercicio.criarExercicioPeso("Bracinho", "Biceawsadps unilateral", "Bíceps", 10, 3, 50);
