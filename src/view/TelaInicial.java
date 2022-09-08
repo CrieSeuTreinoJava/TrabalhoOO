@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import controlador.*;
 import dados.*;
@@ -27,6 +29,29 @@ public class TelaInicial {
    * Construtor da classe TelaInicial. Inicializa todos os componentes da tela
    * telaInicial.
    */
+  public static void main(String[] args) {
+	    ControladorTreino controladorTreino = new ControladorTreino();
+	    ControladorExercicio controladorExercicio = new ControladorExercicio();
+
+	    // Criar um treino
+	    controladorTreino.criarTreino("Perna");
+	    controladorTreino.criarTreino("Braço");
+	    controladorTreino.criarTreino("Cardio");
+	    controladorTreino.criarTreino("Costas");
+	    // Editar treino
+	    controladorTreino.editarTreino("Braço", "Bracinho");
+	    // Apagar treino
+	    controladorTreino.apagarTreino("Perna");
+	    // Criar exercicios
+	    controladorExercicio.criarExercicioPeso("Bracinho", "Bicepawds unilateral", "Bíceps", 10, 3, 50);
+	    controladorExercicio.criarExercicioPeso("Bracinho", "Bicwadeps unilateral", "Bíceps", 10, 3, 50);
+	    controladorExercicio.criarExercicioPeso("Bracinho", "Biceawsadps unilateral", "Bíceps", 10, 3, 50);
+	    controladorExercicio.criarExercicioPeso("Bracinho", "Biceweps unilateral", "Bíceps", 10, 3, 50);
+	    controladorExercicio.criarExercicioPeso("Bracinho", "Biceaawddps unilateral", "Bíceps", 10, 3, 50);
+	    controladorExercicio.criarExercicioPeso("Costas", "Remada sincera", "Posterior do ombro", 12, 4, 20);
+
+	    new TelaInicial();
+  }
   public TelaInicial() {
     tela = new JFrame("Tela Inicial");
     tela.setBounds(0, 0, 1280, 720);
