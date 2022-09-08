@@ -14,9 +14,11 @@ class TesteControladorTreino {
 	
 	@Test
 	void testCriarTreino() {
-		controladorTreino.criarTreino("Bracinho");
-		controladorTreino.criarTreino("Perna");
-		controladorTreino.criarTreino("Peito");
+		assertTrue(controladorTreino.criarTreino("Bracinho"));
+		assertTrue(controladorTreino.criarTreino("Perna"));
+		assertTrue(controladorTreino.criarTreino("Peito"));
+		assertFalse(controladorTreino.criarTreino("Bracinho"));
+	
 	}
 
 	@Test
@@ -33,10 +35,15 @@ class TesteControladorTreino {
 	
 	}
 
-	/*
-	 * @Test String[] testListarTreinos() { return
-	 * controladorTreino.listarTreinos(); }
-	 * 
-	 * @Test void testApagarTreino() { controladorTreino.apagarTreino("Peito"); }
-	 */
+	 @Test void testApagarTreino() { 
+		 assertTrue(controladorTreino.apagarTreino("Peito"));
+		 assertFalse(controladorTreino.apagarTreino("Não existe"));
+		 }
+
+	 @Test 
+	 void testListarTreinos() { 
+		 String[] listar = controladorTreino.listarTreinos(); 
+		 assertArrayEquals(new String[]{"Bracinho", "quadriceps"}, listar);
+	 } 
+	 
 }

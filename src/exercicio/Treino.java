@@ -78,7 +78,7 @@ public class Treino {
 	 * ele determina o exercicio a ser editado baseado no nome passado como
 	 * parâmetro.
 	 */
-	public void editarExercicioPeso(String nome, String musculo, int repeticao, int sets, int peso) {
+	public ExercicioPeso editarExercicioPeso(String nome, String musculo, int repeticao, int sets, int peso) {
 		// editar exercicio escolhendo por nome do exercicio com peso
 		for (ExercicioPeso exercicio : this.exerciciosPeso) {
 			if (exercicio.getNome().equals(nome)) {
@@ -86,8 +86,10 @@ public class Treino {
 				exercicio.setRepeticao(repeticao);
 				exercicio.setSets(sets);
 				exercicio.setPeso(peso);
+				return exercicio;
 			}
 		}
+		return null;
 	}
 
 	/**
@@ -95,7 +97,7 @@ public class Treino {
 	 * ele determina o exercicio a ser editado baseado no nome passado como
 	 * parâmetro.
 	 */
-	public void editarExercicioSemPeso(String nome, String musculo, int repeticao, double tempo, double distancia) {
+	public ExercicioSemPeso editarExercicioSemPeso(String nome, String musculo, int repeticao, double tempo, double distancia) {
 		// editar exercicio escolhendo por nome do exercicio sem peso
 		for (ExercicioSemPeso exercicio : this.exerciciosSemPeso) {
 			if (exercicio.getNome().equals(nome)) {
@@ -103,8 +105,10 @@ public class Treino {
 				exercicio.setRepeticao(repeticao);
 				exercicio.setTempo(tempo);
 				exercicio.setDistancia(distancia);
+			return exercicio;
 			}
 		}
+		return null;
 	}
 
 	/**

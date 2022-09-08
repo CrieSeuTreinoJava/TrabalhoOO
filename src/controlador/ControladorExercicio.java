@@ -48,9 +48,10 @@ public class ControladorExercicio {
    * Determina o treino a partir do nome passado como parâmetro.
    * recebe os atributos modificados do exercício com peso e atuliza o exercício.
    */
-  public void editarExercicioPeso(String treino, String nome, String musculo, int repeticao, int sets, int peso) {
+  public ExercicioPeso editarExercicioPeso(String treino, String nome, String musculo, int repeticao, int sets, int peso) {
     Treino treinoSelecionado = this.database.getTreino(treino);
-    treinoSelecionado.editarExercicioPeso(nome, musculo, repeticao, sets, peso);
+    ExercicioPeso exercicio = treinoSelecionado.editarExercicioPeso(nome, musculo, repeticao, sets, peso);
+    return exercicio;
   }
 
   /**
@@ -58,10 +59,11 @@ public class ControladorExercicio {
    * Determina o treino a partir do nome passado como parâmetro.
    * recebe os atributos modificados do exercício sem peso e atuliza o exercício.
    */
-  public void editarExercicioSemPeso(String treino, String nome, String musculo, int repeticao, double tempo,
+  public ExercicioSemPeso editarExercicioSemPeso(String treino, String nome, String musculo, int repeticao, double tempo,
       double distancia) {
     Treino treinoSelecionado = this.database.getTreino(treino);
-    treinoSelecionado.editarExercicioSemPeso(nome, musculo, repeticao, tempo, distancia);
+    ExercicioSemPeso exercicio = treinoSelecionado.editarExercicioSemPeso(nome, musculo, repeticao, tempo, distancia);
+    return exercicio;
   }
 
   /**
