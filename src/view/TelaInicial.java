@@ -1,7 +1,7 @@
 package view;
 
 import java.awt.event.*;
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
 import javax.swing.*;
 import controlador.*;
@@ -19,7 +19,7 @@ public class TelaInicial {
   private static JFrame tela;
   private static JButton btnCriarTreino;
   private static JButton btnAcessarTreino;
-  private static ImageIcon background;
+  // private static ImageIcon background;
   private static JTextField nomeTreinoInput;
   private static JList<String> listaTreinos;
 
@@ -30,36 +30,32 @@ public class TelaInicial {
    * telaInicial.
    */
   public static void main(String[] args) {
-	    ControladorTreino controladorTreino = new ControladorTreino();
-	    ControladorExercicio controladorExercicio = new ControladorExercicio();
+    ControladorTreino controladorTreino = new ControladorTreino();
+    ControladorExercicio controladorExercicio = new ControladorExercicio();
 
-	    // Criar um treino
-	    controladorTreino.criarTreino("Perna");
-	    controladorTreino.criarTreino("Braço");
-	    controladorTreino.criarTreino("Cardio");
-	    controladorTreino.criarTreino("Costas");
-	    // Editar treino
-	    controladorTreino.editarTreino("Braço", "Bracinho");
-	    // Apagar treino
-	    controladorTreino.apagarTreino("Perna");
-	    // Criar exercicios
+    // Criar um treino
+    controladorTreino.criarTreino("Quarta");
+    controladorTreino.criarTreino("Terça");
+    controladorTreino.criarTreino("Sabado");
+    controladorTreino.criarTreino("Sexta");
 
-	    controladorExercicio.criarExercicioPeso("Bracinho", "Bicepawds unilateral", "Bíceps", 10, 3, 50);
-	    controladorExercicio.criarExercicioPeso("Bracinho", "Bicwadeps unilateral", "Bíceps", 10, 3, 50);
-	    controladorExercicio.criarExercicioPeso("Bracinho", "Biceawsadps unilateral", "Bíceps", 10, 3, 50);
-	    controladorExercicio.criarExercicioPeso("Bracinho", "Biceweps unilateral", "Bíceps", 10, 3, 50);
-	    controladorExercicio.criarExercicioPeso("Bracinho", "Biceaawddps unilateral", "Bíceps", 10, 3, 50);
-	    controladorExercicio.criarExercicioPeso("Costas", "Remada sincera", "Posterior do ombro", 12, 4, 20);
+    controladorExercicio.criarExercicioPeso("Terça", "Biceps unilateral", "Bíceps", 10, 3, 50);
+    controladorExercicio.criarExercicioPeso("Sexta", "Remada sincera", "Posterior do ombro", 12, 4, 20);
+    controladorExercicio.criarExercicioSemPeso("Quarta", "Corrida", " ", 1, 30, 3);
+    controladorExercicio.criarExercicioPeso("Quarta", "Agachamento", "Quadríceps", 10, 3, 50);
+    controladorExercicio.criarExercicioPeso("Quarta", "Leg press", "Quadríceps", 10, 3, 50);
+    controladorExercicio.criarExercicioPeso("Quarta", "Cadeira extensora", "Quadríceps", 10, 3, 50);
+    controladorExercicio.criarExercicioSemPeso("Quarta", "polichinelo", "corpo inteiro", 20, 3, 0);
 
-	    new TelaInicial();
+    new TelaInicial();
   }
+
   public TelaInicial() {
     tela = new JFrame("Tela Inicial");
     tela.setBounds(0, 0, 1280, 720);
     tela.setResizable(false);
-	ImageIcon background = new ImageIcon("src/img/muzy.jpg");
-	tela.setContentPane(new JLabel(background));
-
+    ImageIcon background = new ImageIcon("src/img/muzy.jpg");
+    tela.setContentPane(new JLabel(background));
 
     tela.getContentPane().setLayout(null);
     tela.setLocationRelativeTo(null);
@@ -115,8 +111,10 @@ public class TelaInicial {
     btnAcessarTreino.setBounds(41, 590, 200, 30);
     btnAcessarTreino.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        tela.setVisible(false);
-        new TelaTreino(treinoSelecionado);
+        if (treinoSelecionado != null) {
+          tela.setVisible(false);
+          new TelaTreino(treinoSelecionado);
+        }
       }
     });
     btnAcessarTreino.setVisible(true);
@@ -149,7 +147,7 @@ public class TelaInicial {
     });
     btnNewButton.setBounds(41, 490, 200, 30);
     tela.getContentPane().add(btnNewButton);
-    
+
     JLabel lblSelecioneUmTreino = new JLabel("Selecione um treino");
     lblSelecioneUmTreino.setBounds(40, 132, 200, 32);
     tela.getContentPane().add(lblSelecioneUmTreino);
