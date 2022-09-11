@@ -18,18 +18,22 @@ public class TelaInicial {
 
   private static JFrame tela;
   private static JButton butaoCriarTreino;
-  private static JButton butaoAcessarTreino;
+  private static JButton botaoAcessarTreino;
   // private static ImageIcon background;
   private static JTextField nomeTreinoInput;
   private static ImageIcon background;
   private static JList<String> listaTreinos;
-  private static JButton butaoDeletar;
-  private static JButton butaoEditarTreino;
+  private static JButton botaoDeletar;
+  private static JButton botaoEditarTreino;
   private JLabel SelecioneUmTreino;
   private JScrollPane scroll;
 
   private String treinoSelecionado;
   private ControladorTreino controladorTreino = new ControladorTreino();
+  /**
+   * @wbp.nonvisual location=79,494
+   */
+  private final JButton butaoPesquisar = new JButton("Pesquisar");
 
   /**
    * Construtor da classe TelaInicial. Inicializa todos os componentes da tela
@@ -121,16 +125,16 @@ public class TelaInicial {
     // tela.getContentPane().add(listaTreinos);
 
     scroll = new JScrollPane(listaTreinos);
-    scroll.setBounds(40, 170, 200, 300);
+    scroll.setBounds(40, 170, 200, 200);
     tela.getContentPane().add(scroll);
 
     listaTreinos.repaint();
     tela.repaint();
 
-    butaoAcessarTreino = new JButton("Acessar treino");
-    butaoAcessarTreino.setBounds(41, 590, 200, 30);
-    butaoAcessarTreino.setVisible(true);
-    butaoAcessarTreino.addActionListener(new ActionListener() {
+    botaoAcessarTreino = new JButton("Acessar treino");
+    botaoAcessarTreino.setBounds(41, 590, 200, 30);
+    botaoAcessarTreino.setVisible(true);
+    botaoAcessarTreino.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         if (controladorTreino.getTreino(treinoSelecionado) != null) {
           tela.setVisible(false);
@@ -140,10 +144,10 @@ public class TelaInicial {
         }
       }
     });
-    tela.getContentPane().add(butaoAcessarTreino);
+    tela.getContentPane().add(botaoAcessarTreino);
 
-    butaoEditarTreino = new JButton("Editar");
-    butaoEditarTreino.addActionListener(new ActionListener() {
+    botaoEditarTreino = new JButton("Editar");
+    botaoEditarTreino.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         if (listaTreinos.getSelectedValue() == null) {
           JOptionPane.showMessageDialog(null, "Selecione um treino para editar!");
@@ -158,11 +162,11 @@ public class TelaInicial {
       }
     });
 
-    butaoEditarTreino.setBounds(41, 540, 200, 30);
-    tela.getContentPane().add(butaoEditarTreino);
+    botaoEditarTreino.setBounds(41, 540, 200, 30);
+    tela.getContentPane().add(botaoEditarTreino);
 
-    butaoDeletar = new JButton("Apagar");
-    butaoDeletar.addActionListener(new ActionListener() {
+    botaoDeletar = new JButton("Apagar");
+    botaoDeletar.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         if (listaTreinos.getSelectedValue() == null) {
           JOptionPane.showMessageDialog(null, "Selecione um treino para apagar!");
@@ -176,8 +180,8 @@ public class TelaInicial {
       }
     });
 
-    butaoDeletar.setBounds(41, 490, 200, 30);
-    tela.getContentPane().add(butaoDeletar);
+    botaoDeletar.setBounds(41, 490, 200, 30);
+    tela.getContentPane().add(botaoDeletar);
 
     SelecioneUmTreino = new JLabel("Selecione um treino");
     SelecioneUmTreino.setBounds(40, 132, 200, 32);
