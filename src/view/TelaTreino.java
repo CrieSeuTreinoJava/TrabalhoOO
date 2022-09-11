@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
  */
 public class TelaTreino {
 	private static JFrame tela;
+	private static ImageIcon background;
 
 	private static JTextField caixaTextoRep;
 	private static JTextField caixaTextoMusculo;
@@ -41,7 +42,9 @@ public class TelaTreino {
 	private static JScrollPane scroll2;
 
 	private static JTable tabela;
+	private static JLabel tabelaTituloPeso;
 	private static JTable tabela2;
+	private static JLabel tabelaTituloSemPeso;
 
 	private JLabel texto2;
 	private JLabel textoExercicio;
@@ -50,21 +53,20 @@ public class TelaTreino {
 	 * Construtor da classe TelaTreino. Inicializa todos os componentes da tela
 	 * TelaTreino.
 	 */
+
 	public TelaTreino(String treino) {
+		ControladorExercicio controladorExercicio = new ControladorExercicio();
+
 		tela = new JFrame("Tela Inicial");
 		tela.setBounds(0, 0, 1280, 720);
 		tela.setResizable(false);
-		 ImageIcon background = new ImageIcon("src/img/imagem52.jpg");
-		 tela.setContentPane(new JLabel(background));
-		 
-
+		background = new ImageIcon("src/img/imagem52.jpg");
+		tela.setContentPane(new JLabel(background));
 
 		tela.getContentPane().setLayout(null);
 		tela.setLocationRelativeTo(null);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tela.setVisible(true);
-
-		ControladorExercicio controladorExercicio = new ControladorExercicio();
 
 		String[] colunas = { "Exercício", "Músculo", "Repetição", "Set", "Peso" };
 		String[] colunas2 = { "Exercício", "Músculo", "Repetição", "Tempo", "Distância" };
@@ -72,48 +74,64 @@ public class TelaTreino {
 		tela.getContentPane().setLayout(null);
 
 		criarExercicio = new JButton("Criar");
+		// quando o butão for clicado, cria um novo exercicio caso os campos estejam preenchidos corretamente
 		criarExercicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControladorExercicio controladorExercicio = new ControladorExercicio();
-				if (!tipoExercicio.isSelected()) {
-					// System.out.println("Exercicio com peso");
-					controladorExercicio.criarExercicioPeso(treino, caixaTextoExercicio.getText(),
-							caixaTextoMusculo.getText(), Integer.parseInt(caixaTextoRep.getText()),
-							Integer.parseInt(caixaTextoSetTempo.getText()),
-							Integer.parseInt(caixaTextoPesoDist.getText()));
-					String[][] dadosPeso = new String[controladorExercicio.getExerciciosPeso(treino).size()][5];
-					for (int i = 0; i < controladorExercicio.getExerciciosPeso(treino).size(); i++) {
-						dadosPeso[i][0] = controladorExercicio.getExerciciosPeso(treino).get(i).getNome();
-						dadosPeso[i][1] = controladorExercicio.getExerciciosPeso(treino).get(i).getMusculo();
-						dadosPeso[i][2] = Integer
-								.toString(controladorExercicio.getExerciciosPeso(treino).get(i).getRepeticao());
-						dadosPeso[i][3] = Integer
-								.toString(controladorExercicio.getExerciciosPeso(treino).get(i).getSets());
-						dadosPeso[i][4] = Integer
-								.toString(controladorExercicio.getExerciciosPeso(treino).get(i).getPeso());
-					}
-					tabela = new JTable(dadosPeso, colunas);
-					scroll.setViewportView(tabela);
-
+				if (caixaTextoExercicio.getText().trim().compareTo("") == 0 ||
+						caixaTextoMusculo.getText().trim().compareTo("") == 0 ||
+						caixaTextoRep.getText().trim().compareTo("") == 0 ||
+						caixaTextoSetTempo.getText().trim().compareTo("") == 0 ||
+						caixaTextoSetTempo.getText().trim().compareTo("") == 0) {
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos");
 				} else {
-					// System.out.println("Exercicio sem peso");
-					controladorExercicio.criarExercicioSemPeso(treino, caixaTextoExercicio.getText(),
-							caixaTextoMusculo.getText(), Integer.parseInt(caixaTextoRep.getText()),
-							Integer.parseInt(caixaTextoSetTempo.getText()),
-							Integer.parseInt(caixaTextoPesoDist.getText()));
+					try {
+						int numRep = Integer.parseInt(caixaTextoRep.getText());
+						Double numSetTempo = Double.parseDouble(caixaTextoSetTempo.getText());
+						Double numPesoDist = Double.parseDouble(caixaTextoPesoDist.getText());
+						ControladorExercicio controladorExercicio = new ControladorExercicio();
+						if (!tipoExercicio.isSelected()) {
+							controladorExercicio.criarExercicioPeso(treino, caixaTextoExercicio.getText(),
+									caixaTextoMusculo.getText(), numRep,
+									numSetTempo.intValue(),
+									numPesoDist.intValue());
+							String[][] dadosPeso = new String[controladorExercicio.getExerciciosPeso(treino).size()][5];
+							for (int i = 0; i < controladorExercicio.getExerciciosPeso(treino).size(); i++) {
+								dadosPeso[i][0] = controladorExercicio.getExerciciosPeso(treino).get(i).getNome();
+								dadosPeso[i][1] = controladorExercicio.getExerciciosPeso(treino).get(i).getMusculo();
+								dadosPeso[i][2] = Integer
+										.toString(controladorExercicio.getExerciciosPeso(treino).get(i).getRepeticao());
+								dadosPeso[i][3] = Integer
+										.toString(controladorExercicio.getExerciciosPeso(treino).get(i).getSets());
+								dadosPeso[i][4] = Integer
+										.toString(controladorExercicio.getExerciciosPeso(treino).get(i).getPeso());
+							}
+							tabela = new JTable(dadosPeso, colunas);
+							scroll.setViewportView(tabela);
 
-					String[][] dadosSemPeso = new String[controladorExercicio.getExerciciosSemPeso(treino).size()][5];
-					for (int i = 0; i < controladorExercicio.getExerciciosSemPeso(treino).size(); i++) {
-						dadosSemPeso[i][0] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getNome();
-						dadosSemPeso[i][1] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getMusculo();
-						dadosSemPeso[i][2] = Integer
-								.toString(controladorExercicio.getExerciciosSemPeso(treino).get(i).getRepeticao());
-						dadosSemPeso[i][3] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getTempo() + "";
-						dadosSemPeso[i][4] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getDistancia()
-								+ "";
+						} else {
+							controladorExercicio.criarExercicioSemPeso(treino, caixaTextoExercicio.getText(),
+									caixaTextoMusculo.getText(), numRep,
+									numSetTempo,
+									numPesoDist);
+
+							String[][] dadosSemPeso = new String[controladorExercicio.getExerciciosSemPeso(treino).size()][5];
+							for (int i = 0; i < controladorExercicio.getExerciciosSemPeso(treino).size(); i++) {
+								dadosSemPeso[i][0] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getNome();
+								dadosSemPeso[i][1] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getMusculo();
+								dadosSemPeso[i][2] = Integer
+										.toString(controladorExercicio.getExerciciosSemPeso(treino).get(i).getRepeticao());
+								dadosSemPeso[i][3] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getTempo() + "";
+								dadosSemPeso[i][4] = controladorExercicio.getExerciciosSemPeso(treino).get(i).getDistancia()
+										+ "";
+							}
+							tabela2 = new JTable(dadosSemPeso, colunas2);
+							scroll2.setViewportView(tabela2);
+						}
+					} catch (NumberFormatException nfe) {
+						JOptionPane.showMessageDialog(null, "Insira somente numeros nos campos 3, 4 e 5!");
+						return;
 					}
-					tabela2 = new JTable(dadosSemPeso, colunas2);
-					scroll2.setViewportView(tabela2);
+
 				}
 			}
 		});
@@ -143,11 +161,11 @@ public class TelaTreino {
 		texto1.setBounds(50, 69, 200, 30);
 		tela.getContentPane().add(texto1);
 
-		textoMusculo = new JLabel("Músculo");
+		textoMusculo = new JLabel("2. Músculo");
 		textoMusculo.setBounds(50, 160, 200, 30);
 		tela.getContentPane().add(textoMusculo);
 
-		textoRep = new JLabel("Repetição");
+		textoRep = new JLabel("3. Repetição");
 		textoRep.setBounds(50, 220, 200, 30);
 		tela.getContentPane().add(textoRep);
 
@@ -161,21 +179,20 @@ public class TelaTreino {
 		tela.getContentPane().add(caixaTextoPesoDist);
 		caixaTextoPesoDist.setColumns(10);
 
-		textoSetTempo = new JLabel("Sets ou Tempo(min)");
+		textoSetTempo = new JLabel("4. Sets ou Tempo(min)");
 		textoSetTempo.setBounds(50, 280, 200, 25);
 		tela.getContentPane().add(textoSetTempo);
 
-		textoPesoDist = new JLabel("Peso(kg) ou Distância(km)");
+		textoPesoDist = new JLabel("5. Peso(kg) ou Distância(km)");
 		textoPesoDist.setBounds(50, 340, 200, 21);
 		tela.getContentPane().add(textoPesoDist);
 
 		editar = new JButton("Editar");
+				// quando o butão for clicado, edita o exercicio e atualiza a tabela
 		editar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControladorExercicio controladorExercicio = new ControladorExercicio();
 				if (!tipoExercicio.isSelected()) {
-					System.out.println("Exercicio com peso");
-					System.out.println(caixaTextoExercicio.getText());
 					controladorExercicio.editarExercicioPeso(treino, caixaTextoExercicio.getText(),
 							caixaTextoMusculo.getText(), Integer.parseInt(caixaTextoRep.getText()),
 							Integer.parseInt(caixaTextoSetTempo.getText()),
@@ -195,7 +212,6 @@ public class TelaTreino {
 					scroll.setViewportView(tabela);
 
 				} else {
-					// System.out.println("Exercicio sem peso");
 					controladorExercicio.editarExercicioSemPeso(treino, caixaTextoExercicio.getText(),
 							caixaTextoMusculo.getText(), Integer.parseInt(caixaTextoRep.getText()),
 							Integer.parseInt(caixaTextoSetTempo.getText()),
@@ -220,12 +236,12 @@ public class TelaTreino {
 		tela.getContentPane().add(editar);
 
 		excluir = new JButton("Excluir");
+				// quando o butão for clicado, exclui o exercicio
 		excluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tabela.getSelectedRow() != -1) {
 					controladorExercicio.apagarExercicioPeso(treino,
 							tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
-					System.out.println(tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
 					String[][] dadosPeso = new String[controladorExercicio.getExerciciosPeso(treino).size()][5];
 					for (int i = 0; i < controladorExercicio.getExerciciosPeso(treino).size(); i++) {
 						dadosPeso[i][0] = controladorExercicio.getExerciciosPeso(treino).get(i).getNome();
@@ -261,13 +277,14 @@ public class TelaTreino {
 		tela.getContentPane().add(excluir);
 
 		scroll = new JScrollPane();
-		scroll.setBounds(545, 130, 340, 400);
+		scroll.setBounds(540, 130, 340, 200);
 		tela.getContentPane().add(scroll);
 
 		scroll2 = new JScrollPane();
-		scroll2.setBounds(880, 130, 340, 400);
+		scroll2.setBounds(880, 130, 340, 200);
 		tela.getContentPane().add(scroll2);
 
+		// carrega os dados da tabela
 		String[][] dadosPeso = new String[controladorExercicio.getExerciciosPeso(treino).size()][5];
 		String[][] dadosSemPeso = new String[controladorExercicio.getExerciciosSemPeso(treino).size()][5];
 
@@ -312,15 +329,15 @@ public class TelaTreino {
 		texto2.setBounds(530, 20, 230, 30);
 		tela.getContentPane().add(texto2);
 
-		textoExercicio = new JLabel("Nome do Exercício");
+		textoExercicio = new JLabel("1. Nome do Exercício");
 		textoExercicio.setBounds(50, 100, 200, 30);
 		tela.getContentPane().add(textoExercicio);
 
-		JLabel tabelaTituloPeso = new JLabel("Com peso");
+		tabelaTituloPeso = new JLabel("Com peso");
 		tabelaTituloPeso.setBounds(805, 90, 80, 13);
 		tela.getContentPane().add(tabelaTituloPeso);
 
-		JLabel tabelaTituloSemPeso = new JLabel("Sem peso");
+		tabelaTituloSemPeso = new JLabel("Sem peso");
 		tabelaTituloSemPeso.setBounds(1140, 90, 80, 13);
 		tela.getContentPane().add(tabelaTituloSemPeso);
 
