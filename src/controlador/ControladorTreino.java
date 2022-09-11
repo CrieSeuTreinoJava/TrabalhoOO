@@ -78,5 +78,4 @@ public class ControladorTreino {
     this.database = Database.getInstance();
     return this.database.getTreinos();
   }
-
 }

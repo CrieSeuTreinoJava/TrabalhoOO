@@ -13,7 +13,6 @@ import exercicio.ExercicioPeso;
 import exercicio.ExercicioSemPeso;
 
 class TesteControladorExercicioComPeso {
-
 	ControladorExercicio controladorExercicio = new ControladorExercicio();
 	ControladorTreino controladorTreino = new ControladorTreino();
 

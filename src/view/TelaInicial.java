@@ -30,10 +30,7 @@ public class TelaInicial {
 
   private String treinoSelecionado;
   private ControladorTreino controladorTreino = new ControladorTreino();
-  /**
-   * @wbp.nonvisual location=79,494
-   */
-  private final JButton butaoPesquisar = new JButton("Pesquisar");
+  private final JButton botaoPesquisar = new JButton("Pesquisar");
 
   /**
    * Construtor da classe TelaInicial. Inicializa todos os componentes da tela
@@ -72,8 +69,10 @@ public class TelaInicial {
     tela = new JFrame("Tela Inicial");
     tela.setBounds(0, 0, 1280, 720);
     tela.setResizable(false);
-    background = new ImageIcon("src/img/muzy.jpg");
-    tela.setContentPane(new JLabel(background));
+	/*
+	 * background = new ImageIcon("src/img/muzy.jpg"); tela.setContentPane(new
+	 * JLabel(background));
+	 */
 
     tela.getContentPane().setLayout(null);
     tela.setLocationRelativeTo(null);
@@ -125,14 +124,14 @@ public class TelaInicial {
     // tela.getContentPane().add(listaTreinos);
 
     scroll = new JScrollPane(listaTreinos);
-    scroll.setBounds(40, 170, 200, 200);
+    scroll.setBounds(40, 170, 200, 250);
     tela.getContentPane().add(scroll);
 
     listaTreinos.repaint();
     tela.repaint();
 
     botaoAcessarTreino = new JButton("Acessar treino");
-    botaoAcessarTreino.setBounds(41, 590, 200, 30);
+    botaoAcessarTreino.setBounds(40, 590, 200, 30);
     botaoAcessarTreino.setVisible(true);
     botaoAcessarTreino.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -162,7 +161,7 @@ public class TelaInicial {
       }
     });
 
-    botaoEditarTreino.setBounds(41, 540, 200, 30);
+    botaoEditarTreino.setBounds(40, 540, 200, 30);
     tela.getContentPane().add(botaoEditarTreino);
 
     botaoDeletar = new JButton("Apagar");
@@ -180,12 +179,21 @@ public class TelaInicial {
       }
     });
 
-    botaoDeletar.setBounds(41, 490, 200, 30);
+    botaoDeletar.setBounds(40, 490, 200, 30);
     tela.getContentPane().add(botaoDeletar);
 
     SelecioneUmTreino = new JLabel("Selecione um treino");
     SelecioneUmTreino.setBounds(40, 132, 200, 32);
     tela.getContentPane().add(SelecioneUmTreino);
+    
+    
+    botaoPesquisar.setBounds(40, 440, 200, 30);
+    botaoPesquisar.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+    		
+    	}
+    });
+    tela.getContentPane().add(botaoPesquisar);
 
     tela.repaint();
 
