@@ -82,7 +82,7 @@ public class TelaInicial {
     tela.getContentPane().add(butaoCriarTreino);
     butaoCriarTreino.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        if (nomeTreinoInput.getText().trim().compareTo("") == 0) {
+        if (nomeTreinoInput.getText().compareTo("") == 0) {
           JOptionPane.showMessageDialog(null, "O campo de Treino está vazio!");
         } else {
           ControladorTreino controladorTreino = new ControladorTreino();
@@ -117,6 +117,8 @@ public class TelaInicial {
 
     listaTreinos.setListData(Database.getInstance().getTreinos());
     listaTreinos.setBounds(40, 170, 200, 300);
+    // listaTreinos.setVisible(true);
+    // tela.getContentPane().add(listaTreinos);
 
     scroll = new JScrollPane(listaTreinos);
     scroll.setBounds(40, 170, 200, 300);

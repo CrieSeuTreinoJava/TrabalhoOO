@@ -18,7 +18,6 @@ class TesteControladorTreino {
 		assertTrue(controladorTreino.criarTreino("Perna"));
 		assertTrue(controladorTreino.criarTreino("Peito"));
 		assertFalse(controladorTreino.criarTreino("Bracinho"));
-
 	}
 
 	@Test
@@ -32,7 +31,6 @@ class TesteControladorTreino {
 
 		Treino treinoNaoExiste = controladorTreino.editarTreino("triceps", "biceps");
 		assertNull(treinoNaoExiste);
-
 	}
 
 	@Test
