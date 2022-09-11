@@ -67,12 +67,10 @@ public class TelaInicial {
 
   public TelaInicial() {
     tela = new JFrame("Tela Inicial");
+    background = new ImageIcon("src/img/muzy.jpg");
+    tela.setContentPane(new JLabel(background));
     tela.setBounds(0, 0, 1280, 720);
     tela.setResizable(false);
-	/*
-	 * background = new ImageIcon("src/img/muzy.jpg"); tela.setContentPane(new
-	 * JLabel(background));
-	 */
 
     tela.getContentPane().setLayout(null);
     tela.setLocationRelativeTo(null);
@@ -120,8 +118,6 @@ public class TelaInicial {
 
     listaTreinos.setListData(Database.getInstance().getTreinos());
     listaTreinos.setBounds(40, 170, 200, 300);
-    // listaTreinos.setVisible(true);
-    // tela.getContentPane().add(listaTreinos);
 
     scroll = new JScrollPane(listaTreinos);
     scroll.setBounds(40, 170, 200, 250);
@@ -185,13 +181,21 @@ public class TelaInicial {
     SelecioneUmTreino = new JLabel("Selecione um treino");
     SelecioneUmTreino.setBounds(40, 132, 200, 32);
     tela.getContentPane().add(SelecioneUmTreino);
-    
-    
+
     botaoPesquisar.setBounds(40, 440, 200, 30);
     botaoPesquisar.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-    		
-    	}
+      public void actionPerformed(ActionEvent e) {
+        if (nomeTreinoInput.getText().compareTo("") == 0) {
+          JOptionPane.showMessageDialog(null, "Escreva o treino que quer acessar!");
+        }
+
+        else if (controladorTreino.getTreino(nomeTreinoInput.getText()) == null) {
+          JOptionPane.showMessageDialog(null, "Treino não encontrado!");
+        } else {
+          tela.setVisible(false);
+          new TelaTreino(nomeTreinoInput.getText());
+        }
+      }
     });
     tela.getContentPane().add(botaoPesquisar);
 
